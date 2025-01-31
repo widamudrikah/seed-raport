@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('gurus', function (Blueprint $table) {
+        Schema::create('siswas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id'); // Tambahkan kolom user_id
-            $table->unsignedBigInteger('kelas_id'); // Tambahkan kolom kelas_id
-            
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('name');
+            $table->unsignedBigInteger('kelas_id');
+
+            // relasi table
             $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('cascade');
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('gurus');
+        Schema::dropIfExists('siswas');
     }
 };

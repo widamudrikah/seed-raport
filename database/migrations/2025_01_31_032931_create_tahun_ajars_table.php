@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kelas', function (Blueprint $table) {
+        Schema::create('tahun_ajars', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->unsignedBigInteger('guru_id');
-
-            // relasi anter table
-            $table->foreign('guru_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('year'); // Contoh format: "2024/2025"
+            $table->enum('semester', ['Ganjil', 'Genap']);
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kelas');
+        Schema::dropIfExists('tahun_ajars');
     }
 };
